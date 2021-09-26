@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ADT_NOTE</title>
+</head>
+<body>
+<h1 id="abstract-data-types">Abstract Data Types</h1>
+<p>ADTs are the way of classifying data structures by providing a minimal expected interface and set of methods.</p>
+<ul>
+<li>ADT -------
+<ul>
+<li>Minimal required functionality</li>
+<li>Operations</li>
+</ul></li>
+</ul>
+<h3 id="array---adt">Array - ADT :</h3>
+<pre><code> An array ADT holds the collection of given elements accessible bt an index.</code></pre>
+<h3 id="minimal-functionality">Minimal functionality :</h3>
+<pre><code> get(i) -&gt; get element i
+
+ set(i,num) -&gt; set element i to num representation.</code></pre>
+<h3 id="operations">Operations :</h3>
+<pre><code> | Max() | Min() | Search(num) | Insert()</code></pre>
+<hr />
+<h2 id="static-and-dynamic-arrays">Static and Dynamic Arrays :</h2>
+<p>Static arrays -&gt; Size cannot be changed. Dynamic arrays -&gt; Size can be changed.</p>
+<h2 id="memory-representation-of-arrays">Memory Representation of Arrays :</h2>
+<p>Element in an array are stored in contiguous memory locations.</p>
+<p>Elements in an array can be accessed using the base address in constant time.</p>
+<hr />
+<h2 id="operations-on-an-array">Operations on an Array :</h2>
+<ul>
+<li><p>Following operations are supported by an array.</p>
+<ul>
+<li>Traversal</li>
+<li>Insertion</li>
+<li>Deletion</li>
+<li>Search</li>
+<li><hr /></li>
+<li>There can be many other operations one can perform on arrays as well.</li>
+</ul></li>
+</ul>
+<h2 id="linear-vs-binary-search">Linear Vs Binary Search :</h2>
+<p><strong>Linear Search</strong> : Searches for an element by visiting all the elements sequentially untill the element is found.</p>
+<blockquote>
+<p>WC Complexity : O(n)</p>
+</blockquote>
+<p><strong>Binary Search</strong> : Searches for an element by breaking the search space into half in a sorted array.</p>
+<blockquote>
+<p>WC Complexity : O(log n)</p>
+</blockquote>
+<p>The search continues towards either side of mid based on whether the element to be searched is lesser or greater than mid.</p>
+<pre class="sourceCode c"><code class="sourceCode c">  
+<span class="ot">#include &lt;stdio.h&gt;</span>
+<span class="ot">#include &lt;stdlib.h&gt;</span>
+
+<span class="dt">int</span> linearSearch(<span class="dt">int</span> arr[],<span class="dt">int</span> size,<span class="dt">int</span> element){
+    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;size;i++){
+        <span class="kw">if</span>(arr[i]==element){
+            <span class="kw">return</span> i;
+        }
+    }
+    <span class="kw">return</span> -<span class="dv">1</span>;
+}
+
+<span class="dt">int</span> binarySearch(<span class="dt">int</span> arr[],<span class="dt">int</span> size,<span class="dt">int</span> element){
+    <span class="dt">int</span> low,mid,high;
+    low = <span class="dv">0</span>;
+    high = size<span class="dv">-1</span>;
+
+    <span class="co">//keep searching until low&lt;= high</span>
+    <span class="kw">while</span>(low&lt;=high){
+        mid = (low+high)/<span class="dv">2</span>;
+        <span class="kw">if</span>(arr[mid]==element){
+            <span class="kw">return</span> mid;
+        }
+        <span class="kw">if</span>(arr[mid]&lt;element){
+            low = mid + <span class="dv">1</span>;
+        }
+        <span class="kw">else</span>{
+            high = mid -<span class="dv">1</span>;
+        }
+    }
+    <span class="kw">return</span> -<span class="dv">1</span>;
+}
+
+<span class="dt">int</span> main()
+{
+    <span class="co">//Unsorted array for linear search</span>
+    <span class="co">//int arr[]= {1,3,5,156,64,73,723,325,444};</span>
+    <span class="co">//int size = sizeof(arr)/sizeof(int);</span>
+    <span class="co">//int element = 444;</span>
+    <span class="co">//int searchIndex = linearSearch(arr,size,element);</span>
+    <span class="co">//printf(&quot;The element %d was found at index %d \n&quot;,element,searchIndex);</span>
+
+    <span class="co">//Sorted array for binary search</span>
+    <span class="dt">int</span> arr[]= {<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">56</span>,<span class="dv">64</span>,<span class="dv">73</span>,<span class="dv">123</span>,<span class="dv">225</span>,<span class="dv">444</span>};
+    <span class="dt">int</span> size = <span class="kw">sizeof</span>(arr)/<span class="kw">sizeof</span>(<span class="dt">int</span>);
+    <span class="dt">int</span> element = <span class="dv">225</span>;
+    <span class="dt">int</span> searchIndex = binarySearch(arr,size,element);
+    printf(<span class="st">&quot;The element %d was found at index %d </span><span class="ch">\n</span><span class="st">&quot;</span>,element,searchIndex);
+    <span class="kw">return</span> <span class="dv">0</span>;
+}
+</code></pre>
+
+</body>
+</html>
